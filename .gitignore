@@ -23,3 +23,5 @@ dev.properties
 dependency-reduced-pom.xml
 /bin
 .mymetadata
+.idea
+__pycache__
