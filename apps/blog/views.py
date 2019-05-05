@@ -4,13 +4,22 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import render
 from apps.blog.models import Person
-
+from django.core.paginator import Paginator
 
 def index(request):
     dict = {}
-    dict['err'] = "fdsafd"
-    dict['myName'] = ""
-    return render(request,"login.html",dict)
+
+    p = Person.objects.all()
+    paginator = Paginator(p,3)
+    page = request.GET.get('page')
+
+    if page == None:
+        page = 1
+    print(page)
+    peoples = paginator.page(page)
+
+    dict['peoples'] = peoples
+    return render(request, "login.html", dict)
 
 
 def add(request):
@@ -20,9 +29,5 @@ def add(request):
     p = Person(username=username, age=age)
     p.save()
 
-    persons = Person.objects.all()
-    dict = {}
-    dict['persons'] = persons
-
-    return render(request,"login.html",dict)
+    return render(request, "login.html")
 # Create your views here.
