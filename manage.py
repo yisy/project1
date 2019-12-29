@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import os
 import sys
-
+#fei fei fei 18:53
 if __name__ == '__main__':
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'project1.settings')
     try:
